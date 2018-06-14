@@ -2,8 +2,7 @@ pipeline {
   agent any
   stages {
     stage('test') {
-      steps {
-        step([$class: 'CopyArtifact', projectName: 'test-2'])
+	writeFile file: "application-test.sh", text: "echo Built ${BUILD_ID} of ${JOB_NAME}"
         archiveArtifacts artifacts: '*.sh', fingerprint: true
         echo 'test successful'
       }
